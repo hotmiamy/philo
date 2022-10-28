@@ -1,0 +1,19 @@
+# Ignore all
+*
+
+
+# 	Except these specific files:
+# Headers
+!inc
+!inc/*.h
+
+# Source
+!src
+!src/**
+!src/**.c
+
+# Makefile
+!Makefile
+
+# gitignore
+!.gitignore

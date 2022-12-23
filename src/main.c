@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: llopes-n <llopes-n@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: hotmiamy <hotmiamy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/22 09:28:05 by llopes-n          #+#    #+#             */
-/*   Updated: 2022/10/28 16:57:56 by llopes-n         ###   ########.fr       */
+/*   Updated: 2022/12/23 12:04:35 by hotmiamy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,28 @@
 
 int	eating(t_phi_lst *phi_lst)
 {
-	printf("philosofer %i is eating\n", phi_lst->id);
+	long	cur_time;
+
+	cur_time = current_time() - phi_lst->start_time;
+	printf("%ld philosofer %i is eating\n", cur_time, phi_lst->id);
 	return (0);
 }
 
 int	thinking(t_phi_lst *phi_lst)
 {
-	printf("philosofer %i is thinking\n", phi_lst->id);
+	long	cur_time;
+
+	cur_time = current_time() - phi_lst->start_time;
+	printf("%ld philosofer %i is thinking\n", cur_time, phi_lst->id);
 	return (0);
 }
 
 int	slepping(t_phi_lst *phi_lst)
 {
-	printf("philosofer %i is sleeping\n", phi_lst->id);
+	long	cur_time;
+
+	cur_time = current_time() - phi_lst->start_time;
+	printf("%ld philosofer %i is sleeping\n", cur_time, phi_lst->id);
 	return (0);
 }
 
@@ -35,6 +44,7 @@ void	*routine(void *node)
 	t_phi_lst	*phi_lst;
 
 	phi_lst = (t_phi_lst *)node;
+	phi_lst->start_time = current_time();
 	eating(phi_lst);
 	thinking(phi_lst);
 	slepping(phi_lst);
@@ -44,25 +54,9 @@ void	*routine(void *node)
 int	main(int argc, char **argv)
 {
 	t_philo	philo;
-	int		inx;
 
-	inx = 0;
 	if (argc <= 1)
 		return (0);
-	philo.philo_num = ft_atoi(argv[1]);
-	fill_phi_lst(&philo);
-	while (inx != philo.philo_num)
-	{
-		pthread_create(&philo.phi_lst->thread, NULL, &routine, philo.phi_lst);
-		philo.phi_lst = philo.phi_lst->next;
-		inx++;
-	}
-	inx = 0;
-	while (inx != philo.philo_num)
-	{
-		pthread_join(philo.phi_lst->thread, NULL);
-		philo.phi_lst = philo.phi_lst->next;
-		inx++;
-	}
+	init(&philo, argv[1]);
 	return (0);
 }

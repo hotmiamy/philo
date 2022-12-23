@@ -19,7 +19,7 @@ H_INCLUDE	:=	$(addprefix -I, $(HEADER_DIR))
 
 # Source
 SRC_DIR		:=	src src/utils
-SRC			:=	main.c ft_atoi.c phi_lst_add.c init.c
+SRC			:=	main.c ft_atoi.c phi_lst_add.c init.c time.c
 
 # Object
 OBJ_DIR		:=	obj

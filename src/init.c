@@ -6,7 +6,7 @@
 /*   By: hotmiamy <hotmiamy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/27 16:00:45 by llopes-n          #+#    #+#             */
-/*   Updated: 2022/12/23 11:50:03 by hotmiamy         ###   ########.fr       */
+/*   Updated: 2023/01/04 22:18:01 by hotmiamy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,9 +54,14 @@ void	thread_join(t_philo *philo)
 	}
 }
 
-void	init(t_philo *philo, char *philo_num)
+void	init(t_philo *philo, char **args)
 {
-	philo->philo_num = ft_atoi(philo_num);
+	philo->philo_num = ft_atoi(args[1]);
+	philo->time_die = ft_atoi(args[2]);
+	philo->time_ate = ft_atoi(args[3]);
+	philo->time_sleep = ft_atoi(args[4]);
+	if (args[5] != NULL)
+		philo->times_must_ate = ft_atoi(args[5]);
 	fill_phi_lst(philo);
 	thread_create(philo);
 	thread_join(philo);

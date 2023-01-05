@@ -6,7 +6,7 @@
 /*   By: hotmiamy <hotmiamy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 10:57:26 by hotmiamy          #+#    #+#             */
-/*   Updated: 2022/12/23 11:59:18 by hotmiamy         ###   ########.fr       */
+/*   Updated: 2023/01/04 22:31:37 by hotmiamy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,5 +26,5 @@ void	msleep(int sleep_time)
 
 	start_time = current_time();
 	while (current_time() - start_time < (long)sleep_time)
-		sleep(10);
+		usleep(10);
 }

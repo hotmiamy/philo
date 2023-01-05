@@ -6,7 +6,7 @@
 /*   By: hotmiamy <hotmiamy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/22 09:28:05 by llopes-n          #+#    #+#             */
-/*   Updated: 2022/12/23 12:04:35 by hotmiamy         ###   ########.fr       */
+/*   Updated: 2023/01/04 23:29:58 by hotmiamy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,13 @@ int	eating(t_phi_lst *phi_lst)
 {
 	long	cur_time;
 
+	pthread_mutex_lock(&phi_lst->fork);
+	pthread_mutex_lock(&phi_lst->next->fork);
 	cur_time = current_time() - phi_lst->start_time;
 	printf("%ld philosofer %i is eating\n", cur_time, phi_lst->id);
+	msleep(phi_lst->philo->time_ate);
+	pthread_mutex_unlock(&phi_lst->fork);
+	pthread_mutex_unlock(&phi_lst->next->fork);
 	return (0);
 }
 
@@ -36,6 +41,7 @@ int	slepping(t_phi_lst *phi_lst)
 
 	cur_time = current_time() - phi_lst->start_time;
 	printf("%ld philosofer %i is sleeping\n", cur_time, phi_lst->id);
+	msleep(phi_lst->philo->time_sleep);
 	return (0);
 }
 
@@ -57,6 +63,6 @@ int	main(int argc, char **argv)
 
 	if (argc <= 1)
 		return (0);
-	init(&philo, argv[1]);
+	init(&philo, argv);
 	return (0);
 }

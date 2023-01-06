@@ -19,7 +19,7 @@ H_INCLUDE	:=	$(addprefix -I, $(HEADER_DIR))
 
 # Source
 SRC_DIR		:=	src src/utils
-SRC			:=	main.c ft_atoi.c phi_lst_add.c init.c time.c
+SRC			:=	main.c ft_atoi.c phi_lst_add.c init.c time.c free_exit.c phi_routine.c print_action.c
 
 # Object
 OBJ_DIR		:=	obj
@@ -60,7 +60,7 @@ $(OBJ_DIR):
 
 # Run program using valgrind
 vg:
-	valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes ./$(NAME) 1
+	valgrind --tool=helgrind ./$(NAME) 1 100 200 100
 
 # Norm: checks code for norm errors
 norm:

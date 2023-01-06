@@ -1,24 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   print_action.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hotmiamy <hotmiamy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/22 09:28:05 by llopes-n          #+#    #+#             */
-/*   Updated: 2023/01/06 19:14:07 by hotmiamy         ###   ########.fr       */
+/*   Created: 2023/01/06 19:20:59 by hotmiamy          #+#    #+#             */
+/*   Updated: 2023/01/06 19:24:30 by hotmiamy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int	main(int argc, char **argv)
+void	print_action(t_phi_lst *phi_lst, char *action)
 {
-	t_philo	philo;
+	long	cur_time;
 
-	if (argc <= 1)
-		return (0);
-	init(&philo, argv);
-	free_exit(&philo);
-	return (0);
+	cur_time = current_time() - phi_lst->start_time;
+	printf("%ld philosofer %i %s\n", cur_time, phi_lst->id, action);
 }

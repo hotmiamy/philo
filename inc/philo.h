@@ -6,7 +6,7 @@
 /*   By: hotmiamy <hotmiamy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/22 09:32:24 by llopes-n          #+#    #+#             */
-/*   Updated: 2023/01/04 23:09:38 by hotmiamy         ###   ########.fr       */
+/*   Updated: 2023/01/06 19:27:14 by hotmiamy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,10 @@
 
 # define INT_MIN -2147483648
 # define INT_MAX 2147483647
+
+# define EAT "is eating"
+# define THINK "is thinking"
+# define SLEEP "is sleeping"
 
 typedef struct s_phi_lst
 {
@@ -53,6 +57,8 @@ void		fill_phi_lst(t_philo *philo);
 void		*routine(void *node);
 void		init(t_philo *philo, char **args);
 void		msleep(int sleep_time);
+void		free_exit(t_philo *philo);
+void		print_action(t_phi_lst *phi_lst, char *action);
 int			ft_atoi(const char *numstr);
 long		current_time(void);
 t_phi_lst	*phi_lst_new(int id, t_philo *philo);

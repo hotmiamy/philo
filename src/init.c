@@ -6,7 +6,7 @@
 /*   By: hotmiamy <hotmiamy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/27 16:00:45 by llopes-n          #+#    #+#             */
-/*   Updated: 2023/01/04 22:18:01 by hotmiamy         ###   ########.fr       */
+/*   Updated: 2023/01/05 22:59:24 by hotmiamy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,26 +30,30 @@ void	fill_phi_lst(t_philo *philo)
 
 void	thread_create(t_philo *philo)
 {
-	int	inx;
+	int			inx;
+	t_phi_lst	*tmp;
 
 	inx = 0;
+	tmp = philo->phi_lst;
 	while (inx != philo->philo_num)
 	{
-		pthread_create(&philo->phi_lst->thread, NULL, &routine, philo->phi_lst);
-		philo->phi_lst = philo->phi_lst->next;
+		pthread_create(&tmp->thread, NULL, &routine, tmp);
+		tmp = tmp->next;
 		inx++;
 	}
 }
 
 void	thread_join(t_philo *philo)
 {
-	int	inx;
+	int			inx;
+	t_phi_lst	*tmp;
 
 	inx = 0;
+	tmp = philo->phi_lst;
 	while (inx != philo->philo_num)
 	{
-		pthread_join(philo->phi_lst->thread, NULL);
-		philo->phi_lst = philo->phi_lst->next;
+		pthread_join(tmp->thread, NULL);
+		tmp = tmp->next;
 		inx++;
 	}
 }
@@ -63,6 +67,7 @@ void	init(t_philo *philo, char **args)
 	if (args[5] != NULL)
 		philo->times_must_ate = ft_atoi(args[5]);
 	fill_phi_lst(philo);
+	pthread_mutex_init(&philo->phi_mutex, NULL);
 	thread_create(philo);
 	thread_join(philo);
 }

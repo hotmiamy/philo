@@ -19,7 +19,8 @@ H_INCLUDE	:=	$(addprefix -I, $(HEADER_DIR))
 
 # Source
 SRC_DIR		:=	src src/utils
-SRC			:=	main.c ft_atoi.c phi_lst_add.c init.c time.c free_exit.c phi_routine.c print_action.c
+SRC			:=	main.c init.c free_exit.c phi_routine.c vigilant.c 
+SRC			+=	ft_atoi.c phi_lst_add.c time.c print_action.c ft_isdigit.c check_args.c
 
 # Object
 OBJ_DIR		:=	obj

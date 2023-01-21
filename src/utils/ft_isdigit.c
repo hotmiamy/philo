@@ -1,22 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_isdigit.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hotmiamy <hotmiamy@student.42.fr>          +#+  +:+       +#+        */
+/*   By: llopes-n <llopes-n@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/22 09:28:05 by llopes-n          #+#    #+#             */
-/*   Updated: 2023/01/21 17:22:24 by hotmiamy         ###   ########.fr       */
+/*   Created: 2021/08/18 17:12:31 by llopes-n          #+#    #+#             */
+/*   Updated: 2021/09/09 02:24:52 by llopes-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo.h"
-
-int	main(int argc, char **argv)
+int	ft_isdigit(int c)
 {
-	t_philo	philo;
-
-	init(&philo, argv, argc);
-	free_exit(&philo);
-	return (0);
+	return (c >= '0' && c <= '9');
 }

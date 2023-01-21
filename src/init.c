@@ -6,7 +6,7 @@
 /*   By: hotmiamy <hotmiamy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/27 16:00:45 by llopes-n          #+#    #+#             */
-/*   Updated: 2023/01/05 22:59:24 by hotmiamy         ###   ########.fr       */
+/*   Updated: 2023/01/21 17:26:27 by hotmiamy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ void	thread_create(t_philo *philo)
 		tmp = tmp->next;
 		inx++;
 	}
+	pthread_create(&philo->vigi_thread, NULL, &vigilant, philo->phi_lst);
 }
 
 void	thread_join(t_philo *philo)
@@ -56,18 +57,21 @@ void	thread_join(t_philo *philo)
 		tmp = tmp->next;
 		inx++;
 	}
+	pthread_join(philo->vigi_thread, NULL);
 }
 
-void	init(t_philo *philo, char **args)
+void	*init(t_philo *philo, char **args, int argc)
 {
-	philo->philo_num = ft_atoi(args[1]);
-	philo->time_die = ft_atoi(args[2]);
-	philo->time_ate = ft_atoi(args[3]);
-	philo->time_sleep = ft_atoi(args[4]);
-	if (args[5] != NULL)
-		philo->times_must_ate = ft_atoi(args[5]);
+	check_args(argc, args);
 	fill_phi_lst(philo);
-	pthread_mutex_init(&philo->phi_mutex, NULL);
+	init_struct(args, philo);
+	if (philo->philo_num < 2)
+	{
+		print_action(philo->phi_lst, FORK);
+		print_action(philo->phi_lst, DEAD);
+		return (NULL);
+	}
 	thread_create(philo);
 	thread_join(philo);
+	return (NULL);
 }

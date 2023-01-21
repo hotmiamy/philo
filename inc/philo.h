@@ -6,7 +6,7 @@
 /*   By: hotmiamy <hotmiamy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/22 09:32:24 by llopes-n          #+#    #+#             */
-/*   Updated: 2023/01/21 17:26:14 by hotmiamy         ###   ########.fr       */
+/*   Updated: 2023/01/21 18:21:06 by hotmiamy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,16 +70,19 @@ void		phi_lstadd_back(t_phi_lst **lst, t_phi_lst *new);
 void		fill_phi_lst(t_philo *philo);
 void		*init(t_philo *philo, char **args, int argc);
 void		msleep(int sleep_time);
-void		free_exit(t_philo *philo);
+void		free_lst(t_phi_lst *phi_lst);
 void		print_action(t_phi_lst *phi_lst, char *action);
 void		*routine(void *node);
 void		*vigilant(void *node);
 void		destroy_mutex(t_philo *philo);
 void		init_struct(char **args, t_philo *philo);
+void		check_args(int argc, char **args);
+void		slepping(t_phi_lst *phi_lst);
+void		thinking(t_phi_lst *phi_lst);
 int			ft_atoi(const char *numstr);
 int			ft_isdigit(int c);
 long		current_time(void);
 t_phi_lst	*phi_lst_new(int id, t_philo *philo);
-void		check_args(int argc, char **args);
+t_bool		eating(t_phi_lst *phi_lst);
 
 #endif

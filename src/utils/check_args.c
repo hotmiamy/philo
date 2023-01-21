@@ -6,7 +6,7 @@
 /*   By: hotmiamy <hotmiamy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/21 16:26:34 by hotmiamy          #+#    #+#             */
-/*   Updated: 2023/01/21 17:29:19 by hotmiamy         ###   ########.fr       */
+/*   Updated: 2023/01/21 19:49:43 by hotmiamy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,25 +28,30 @@ void	check_num_args(int argc)
 
 void	check_args(int argc, char **args)
 {
+	int	inx;
+	int	jnx;
+
+	inx = 1;
+	jnx = 0;
 	check_num_args(argc);
-	args++;
-	while (*args)
+	while (args[inx])
 	{
-		while (**args)
+		while (args[inx][jnx])
 		{
-			if (ft_isdigit(**args) == 0)
+			if (ft_isdigit(args[inx][jnx]) == 0)
 			{
 				printf("need to be only numbers\n");
 				exit(1);
 			}
-			if (ft_atoi(*args) < 0)
+			if (ft_atoi(args[inx]) < 0)
 			{
 				printf("need to be only positive numbers\n");
 				exit(1);
 			}
-			*args = *args + 1;
+			jnx++;
 		}
-		args++;
+		inx++;
+		jnx = 0;
 	}
 }
 
@@ -61,7 +66,6 @@ void	init_struct(char **args, t_philo *philo)
 	else
 		philo->times_must_eate = -1;
 	philo->stop_flag = TRUE;
-	philo->phi_lst->start_time = current_time();
-	pthread_mutex_init(&philo->check_mutex, NULL);
+	pthread_mutex_init(&philo->print_mutex, NULL);
 	pthread_mutex_init(&philo->vigi_mutex, NULL);
 }

@@ -6,7 +6,7 @@
 /*   By: hotmiamy <hotmiamy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/27 16:00:45 by llopes-n          #+#    #+#             */
-/*   Updated: 2023/01/21 17:26:27 by hotmiamy         ###   ########.fr       */
+/*   Updated: 2023/01/21 20:31:56 by hotmiamy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,13 +58,14 @@ void	thread_join(t_philo *philo)
 		inx++;
 	}
 	pthread_join(philo->vigi_thread, NULL);
+	destroy_mutex(philo);
 }
 
 void	*init(t_philo *philo, char **args, int argc)
 {
 	check_args(argc, args);
-	fill_phi_lst(philo);
 	init_struct(args, philo);
+	fill_phi_lst(philo);
 	if (philo->philo_num < 2)
 	{
 		print_action(philo->phi_lst, FORK);

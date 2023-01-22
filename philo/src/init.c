@@ -61,9 +61,10 @@ void	thread_join(t_philo *philo)
 	destroy_mutex(philo);
 }
 
-void	*init(t_philo *philo, char **args, int argc)
+int	init(t_philo *philo, char **args, int argc)
 {
-	check_args(argc, args);
+	if (check_args(argc, args))
+		return (1);
 	init_struct(args, philo);
 	fill_phi_lst(philo);
 	if (philo->philo_num < 2)
@@ -72,9 +73,9 @@ void	*init(t_philo *philo, char **args, int argc)
 		msleep(philo->time_die);
 		print_action(philo->phi_lst, FORK);
 		print_action(philo->phi_lst, DEAD);
-		return (NULL);
+		return (0);
 	}
 	thread_create(philo);
 	thread_join(philo);
-	return (NULL);
+	return (0);
 }

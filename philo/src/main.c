@@ -16,7 +16,8 @@ int	main(int argc, char **argv)
 {
 	t_philo	philo;
 
-	init(&philo, argv, argc);
-	free_lst(philo.phi_lst);
+	if (init(&philo, argv, argc) == 1)
+		return (1);
+	free_lst(&philo);
 	return (0);
 }

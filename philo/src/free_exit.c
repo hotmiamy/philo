@@ -12,24 +12,24 @@
 
 #include "philo.h"
 
-void	free_lst(t_phi_lst *phi_lst)
+void	free_lst(t_philo *philo)
 {
 	int			inx;
 	t_phi_lst	*tmp;
 
 	inx = 0;
-	if (phi_lst->philo->philo_num < 2)
+	if (philo->philo_num < 2)
 	{
-		free(phi_lst);
-		phi_lst = NULL;
+		free(philo->phi_lst);
+		philo->phi_lst = NULL;
 		return ;
 	}
-	while (inx != phi_lst->philo->philo_num)
+	while (inx != philo->philo_num)
 	{
-		tmp = phi_lst->next;
-		free(phi_lst);
-		phi_lst = NULL;
-		phi_lst = tmp;
+		tmp = philo->phi_lst->next;
+		free(philo->phi_lst);
+		philo->phi_lst = NULL;
+		philo->phi_lst = tmp;
 		inx++;
 	}
 }

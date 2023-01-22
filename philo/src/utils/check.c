@@ -12,47 +12,50 @@
 
 #include "philo.h"
 
-void	check_num_args(int argc)
+int	check_num_args(int argc)
 {
 	if (argc < 5)
 	{
 		printf("need more arguments\n");
-		exit(1);
+		return (1);
 	}
 	if (argc > 6)
 	{
 		printf("too many arguments\n");
-		exit(1);
+		return (1);
 	}
+	return (0);
 }
 
-void	check_args(int argc, char **args)
+int	check_args(int argc, char **args)
 {
 	int	inx;
 	int	jnx;
 
 	inx = 1;
 	jnx = 0;
-	check_num_args(argc);
+	if (check_num_args(argc) == 1)
+		return (1);
 	while (args[inx])
 	{
 		while (args[inx][jnx])
 		{
-			if (ft_isdigit(args[inx][jnx]) == 0)
-			{
-				printf("need to be only numbers\n");
-				exit(1);
-			}
 			if (ft_atoi(args[inx]) < 0)
 			{
 				printf("need to be only positive numbers\n");
-				exit(1);
+				return (1);
+			}
+			if (ft_isdigit(args[inx][jnx]) == 0)
+			{
+				printf("need to be only numbers\n");
+				return (1);
 			}
 			jnx++;
 		}
 		inx++;
 		jnx = 0;
 	}
+	return (0);
 }
 
 void	init_struct(char **args, t_philo *philo)

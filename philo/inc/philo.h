@@ -68,17 +68,17 @@ typedef struct s_philo
 
 void		phi_lstadd_back(t_phi_lst **lst, t_phi_lst *new);
 void		fill_phi_lst(t_philo *philo);
-void		*init(t_philo *philo, char **args, int argc);
 void		msleep(int sleep_time);
-void		free_lst(t_phi_lst *phi_lst);
+void		free_lst(t_philo *philo);
 void		*routine(void *node);
 void		*vigilant(void *node);
 void		destroy_mutex(t_philo *philo);
 void		init_struct(char **args, t_philo *philo);
-void		check_args(int argc, char **args);
 void		set_stop_flag(t_philo *philo);
 void		print_action(t_phi_lst *phi_lst, char *action);
 void		print_death(t_phi_lst *phi_lst, char *action);
+int			check_args(int argc, char **args);
+int			init(t_philo *philo, char **args, int argc);
 int			slepping(t_phi_lst *phi_lst);
 int			thinking(t_phi_lst *phi_lst);
 int			ft_atoi(const char *numstr);

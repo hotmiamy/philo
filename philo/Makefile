@@ -61,7 +61,7 @@ $(OBJ_DIR):
 
 # Run program using valgrind
 vg:
-	valgrind --tool=helgrind --log-file=log_vg  ./$(NAME) 2 300 100 100
+	valgrind --log-file=log_vg --leak-check=full --show-leak-kinds=all --track-origins=yes ./$(NAME) 3 -200 100 100 7
 
 # Norm: checks code for norm errors
 norm:

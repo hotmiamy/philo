@@ -6,21 +6,25 @@
 /*   By: hotmiamy <hotmiamy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/21 18:11:10 by hotmiamy          #+#    #+#             */
-/*   Updated: 2023/01/22 01:59:04 by hotmiamy         ###   ########.fr       */
+/*   Updated: 2023/01/22 02:07:27 by hotmiamy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int	take_fork_1(t_phi_lst *phi_lst)
+t_bool	take_fork_1(t_phi_lst *phi_lst)
 {
+	if (check_variable(phi_lst->philo->stop_flag, FALSE, phi_lst->philo))
+		return (FALSE);
 	pthread_mutex_lock(&phi_lst->fork);
 	print_action(phi_lst, FORK);
 	return (0);
 }
 
-int	take_fork_2(t_phi_lst *phi_lst)
+t_bool	take_fork_2(t_phi_lst *phi_lst)
 {
+	if (check_variable(phi_lst->philo->stop_flag, FALSE, phi_lst->philo))
+		return (FALSE);
 	pthread_mutex_lock(&phi_lst->next->fork);
 	print_action(phi_lst, FORK);
 	print_action(phi_lst, EAT);

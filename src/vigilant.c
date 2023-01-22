@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vigilant.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hotmiamy <hotmiamy@student.42.fr>          +#+  +:+       +#+        */
+/*   By: llopes-n <llopes-n@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/06 20:56:13 by hotmiamy          #+#    #+#             */
-/*   Updated: 2023/01/21 20:31:05 by hotmiamy         ###   ########.fr       */
+/*   Updated: 2023/01/22 01:57:24 by llopes-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,17 +36,17 @@ void	*vigilant(void *node)
 	t_phi_lst	*philo;
 
 	philo = (t_phi_lst *)node;
-	usleep(21000);
 	while (philo->philo->stop_flag)
 	{
+		usleep(10);
 		pthread_mutex_lock(&philo->philo->vigi_mutex);
 		time_eat = current_time() - philo->stop_eat;
+		pthread_mutex_unlock(&philo->philo->vigi_mutex);
 		if (time_eat > philo->philo->time_die)
 		{
 			philo->philo->stop_flag = FALSE;
 			break ;
 		}
-		pthread_mutex_unlock(&philo->philo->vigi_mutex);
 		philo = philo->next;
 	}
 	print_action(philo, DEAD);

@@ -1,7 +1,7 @@
 # C Compiler
 CC		:=	clang
 # Compiler flags
-CFLAGS	:=	-Wall -Wextra -Werror -pthread -g -fsanitize=thread
+CFLAGS	:=	-Wall -Wextra -Werror -pthread -g
 # Removal tool
 RM		:=	rm -rf
 
@@ -61,7 +61,7 @@ $(OBJ_DIR):
 
 # Run program using valgrind
 vg:
-	valgrind --tool=helgrind ./$(NAME) 1 100 200 100
+	valgrind --tool=helgrind --log-file=log_vg  ./$(NAME) 2 300 100 100 2
 
 # Norm: checks code for norm errors
 norm:

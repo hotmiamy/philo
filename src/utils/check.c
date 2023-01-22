@@ -73,7 +73,6 @@ void	init_struct(char **args, t_philo *philo)
 
 t_bool	check_variable(int variable, t_bool vari_status, t_philo *philo)
 {
-	usleep(15);
 	pthread_mutex_lock(&philo->check_mutex);
 	if (variable == (int)vari_status)
 	{

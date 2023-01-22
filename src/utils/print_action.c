@@ -16,11 +16,11 @@ t_bool	print_action(t_phi_lst *phi_lst, char *action)
 {
 	long	cur_time;
 
-	if (check_variable(phi_lst->philo->stop_flag, FALSE, phi_lst->philo))
-		return (FALSE);
+	if (check_variable(phi_lst->philo->stop_flag, TRUE, phi_lst->philo))
+		return (TRUE);
 	pthread_mutex_lock(&phi_lst->philo->print_mutex);
 	cur_time = current_time() - phi_lst->start_time;
 	printf("%ld philosofer %i %s\n", cur_time, phi_lst->id, action);
 	pthread_mutex_unlock(&phi_lst->philo->print_mutex);
-	return (0);
+	return (FALSE);
 }

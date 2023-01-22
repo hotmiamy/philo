@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   actions.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: llopes-n <llopes-n@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: hotmiamy <hotmiamy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/21 18:11:10 by hotmiamy          #+#    #+#             */
-/*   Updated: 2023/01/22 18:46:23 by llopes-n         ###   ########.fr       */
+/*   Updated: 2023/01/22 16:32:07 by hotmiamy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,6 @@ t_bool	last_eating(t_phi_lst *phi_lst)
 
 t_bool	eating(t_phi_lst *phi_lst)
 {
-	if (!check_death(phi_lst->philo))
-		return (TRUE);
 	take_fork(phi_lst);
 	if (phi_lst->philo->times_must_eate > 0)
 	{
@@ -63,8 +61,6 @@ t_bool	eating(t_phi_lst *phi_lst)
 	msleep(phi_lst->philo->time_ate);
 	pthread_mutex_unlock(&phi_lst->fork);
 	pthread_mutex_unlock(&phi_lst->next->fork);
-	if (!check_death(phi_lst->philo))
-		return (TRUE);
 	return (TRUE);
 }
 

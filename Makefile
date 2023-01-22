@@ -1,7 +1,7 @@
 # C Compiler
 CC		:=	clang
 # Compiler flags
-CFLAGS	:=	-Wall -Wextra -Werror -pthread -g
+CFLAGS	:=	-Wall -Wextra -Werror -pthread -g 
 # Removal tool
 RM		:=	rm -rf
 

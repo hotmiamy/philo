@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_args.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hotmiamy <hotmiamy@student.42.fr>          +#+  +:+       +#+        */
+/*   By: llopes-n <llopes-n@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/21 16:26:34 by hotmiamy          #+#    #+#             */
-/*   Updated: 2023/01/21 19:49:43 by hotmiamy         ###   ########.fr       */
+/*   Updated: 2023/01/22 03:18:47 by llopes-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,4 +68,5 @@ void	init_struct(char **args, t_philo *philo)
 	philo->stop_flag = TRUE;
 	pthread_mutex_init(&philo->print_mutex, NULL);
 	pthread_mutex_init(&philo->vigi_mutex, NULL);
+	pthread_mutex_init(&philo->check_mutex, NULL);
 }

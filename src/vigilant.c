@@ -28,10 +28,8 @@ t_bool	eat_counter(t_philo *philo)
 	inx = 1;
 	while (inx != philo->philo_num)
 	{
-		pthread_mutex_lock(&philo->vigi_mutex);
 		if (tmp->times_ate < philo->times_must_eate)
 		{
-			pthread_mutex_unlock(&philo->vigi_mutex);
 			return (TRUE);
 		}
 		inx++;
@@ -61,6 +59,7 @@ void	*vigilant(void *node)
 		if (phi_lst->philo->times_must_eate > 0 && !eat_counter(phi_lst->philo))
 			return (NULL);
 		phi_lst = phi_lst->next;
+		usleep(50);
 	}
 	print_action(phi_lst, DEAD);
 	return (NULL);

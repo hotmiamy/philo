@@ -50,6 +50,8 @@ t_bool	last_eating(t_phi_lst *phi_lst)
 
 t_bool	eating(t_phi_lst *phi_lst)
 {
+	if (!check_death(phi_lst->philo))
+		return (FALSE);
 	take_fork(phi_lst);
 	if (phi_lst->philo->times_must_eate > 0)
 	{
@@ -61,6 +63,8 @@ t_bool	eating(t_phi_lst *phi_lst)
 	msleep(phi_lst->philo->time_ate);
 	pthread_mutex_unlock(&phi_lst->fork);
 	pthread_mutex_unlock(&phi_lst->next->fork);
+	if (!check_death(phi_lst->philo))
+		return (FALSE);
 	return (TRUE);
 }
 

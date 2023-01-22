@@ -18,14 +18,14 @@ void	*routine(void *node)
 
 	phi_lst = (t_phi_lst *)node;
 	if (phi_lst->id % 2 == 0)
-		usleep(100);
+		usleep(10);
 	phi_lst->start_time = current_time();
 	while (check_death(phi_lst->philo))
 	{
-		if (eating(phi_lst) == FALSE)
-			break ;
 		if (phi_lst->id == phi_lst->philo->philo_num)
 			last_eating(phi_lst);
+		else if (eating(phi_lst) == FALSE)
+			break ;
 		if (thinking(phi_lst) == FALSE)
 			break ;
 		if (slepping(phi_lst) == FALSE)

@@ -3,32 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hotmiamy <hotmiamy@student.42.fr>          +#+  +:+       +#+        */
+/*   By: llopes-n <llopes-n@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/27 16:00:45 by llopes-n          #+#    #+#             */
-/*   Updated: 2023/01/22 16:32:11 by hotmiamy         ###   ########.fr       */
+/*   Updated: 2023/01/22 22:14:26 by llopes-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
-
-void	change_last(t_philo *philo)
-{
-	t_phi_lst		*node;
-	pthread_mutex_t	tmp;
-	int				inx;
-
-	inx = 1;
-	node = philo->phi_lst;
-	while (inx != philo->philo_num)
-	{
-		node = node->next;
-		inx++;
-	}
-	tmp = node->fork;
-	node->fork = node->next->fork;
-	node->next->fork = tmp;
-}
 
 void	fill_phi_lst(t_philo *philo)
 {
@@ -84,9 +66,10 @@ void	*init(t_philo *philo, char **args, int argc)
 	check_args(argc, args);
 	init_struct(args, philo);
 	fill_phi_lst(philo);
-	change_last(philo);
 	if (philo->philo_num < 2)
 	{
+		philo->phi_lst->start_time = current_time();
+		msleep(philo->time_die);
 		print_action(philo->phi_lst, FORK);
 		print_action(philo->phi_lst, DEAD);
 		return (NULL);

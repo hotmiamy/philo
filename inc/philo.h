@@ -6,7 +6,7 @@
 /*   By: llopes-n <llopes-n@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/22 09:32:24 by llopes-n          #+#    #+#             */
-/*   Updated: 2023/01/22 17:46:11 by llopes-n         ###   ########.fr       */
+/*   Updated: 2023/01/22 22:06:07 by llopes-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,12 +77,13 @@ void		destroy_mutex(t_philo *philo);
 void		init_struct(char **args, t_philo *philo);
 void		check_args(int argc, char **args);
 void		set_stop_flag(t_philo *philo);
+void		print_action(t_phi_lst *phi_lst, char *action);
+void		print_death(t_phi_lst *phi_lst, char *action);
 int			slepping(t_phi_lst *phi_lst);
 int			thinking(t_phi_lst *phi_lst);
 int			ft_atoi(const char *numstr);
 int			ft_isdigit(int c);
 long		current_time(void);
-t_bool		print_action(t_phi_lst *phi_lst, char *action);
 t_bool		check_death(t_philo *philo);
 t_bool		last_eating(t_phi_lst *phi_lst);
 t_bool		eating(t_phi_lst *phi_lst);

@@ -61,7 +61,7 @@ $(OBJ_DIR):
 
 # Run program using valgrind
 vg:
-	valgrind --tool=helgrind --log-file=log_vg  ./$(NAME) 2 300 100 100 2
+	valgrind --tool=helgrind --log-file=log_vg  ./$(NAME) 2 300 100 100
 
 # Norm: checks code for norm errors
 norm:

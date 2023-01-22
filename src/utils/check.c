@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hotmiamy <hotmiamy@student.42.fr>          +#+  +:+       +#+        */
+/*   By: llopes-n <llopes-n@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/21 16:26:34 by hotmiamy          #+#    #+#             */
-/*   Updated: 2023/01/22 02:03:46 by hotmiamy         ###   ########.fr       */
+/*   Updated: 2023/01/22 16:52:13 by llopes-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,8 +73,8 @@ void	init_struct(char **args, t_philo *philo)
 
 t_bool	check_variable(t_bool variable, t_philo *philo)
 {
-	usleep (100);
-	t_bool tmp;
+	t_bool	tmp;
+
 	pthread_mutex_lock(&philo->check_mutex);
 	tmp = variable;
 	pthread_mutex_unlock(&philo->check_mutex);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   phi_routine.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hotmiamy <hotmiamy@student.42.fr>          +#+  +:+       +#+        */
+/*   By: llopes-n <llopes-n@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/06 19:13:28 by hotmiamy          #+#    #+#             */
-/*   Updated: 2023/01/22 02:48:57 by hotmiamy         ###   ########.fr       */
+/*   Updated: 2023/01/22 17:45:59 by llopes-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,19 +22,8 @@ void	*routine(void *node)
 	phi_lst->start_time = current_time();
 	while (check_variable(phi_lst->philo->stop_flag, phi_lst->philo))
 	{
-		if (phi_lst->id == phi_lst->philo->philo_num)
-		{
-			if (last_eating(phi_lst) == FALSE)
-				break ;
-		}
 		if (eating(phi_lst) == FALSE)
 			break ;
-		if (phi_lst->philo->times_must_eate > 0
-			&& phi_lst->times_ate >= phi_lst->philo->times_must_eate)
-		{
-			phi_lst->philo->stop_flag = FALSE;
-			break ;
-		}
 		if (thinking(phi_lst) == FALSE)
 			break ;
 		if (slepping(phi_lst) == FALSE)

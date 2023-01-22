@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hotmiamy <hotmiamy@student.42.fr>          +#+  +:+       +#+        */
+/*   By: llopes-n <llopes-n@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/22 09:32:24 by llopes-n          #+#    #+#             */
-/*   Updated: 2023/01/22 02:05:07 by hotmiamy         ###   ########.fr       */
+/*   Updated: 2023/01/22 17:46:11 by llopes-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ typedef struct s_phi_lst
 	int					id;
 	int					times_ate;
 	long				start_time;
-	long				stop_eat;
+	long				last_meat;
 	pthread_t			thread;
 	pthread_mutex_t		fork;
 	struct s_philo		*philo;

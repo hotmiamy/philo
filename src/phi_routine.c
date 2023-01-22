@@ -6,7 +6,7 @@
 /*   By: hotmiamy <hotmiamy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/06 19:13:28 by hotmiamy          #+#    #+#             */
-/*   Updated: 2023/01/22 02:11:29 by hotmiamy         ###   ########.fr       */
+/*   Updated: 2023/01/22 02:48:57 by hotmiamy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,17 +24,17 @@ void	*routine(void *node)
 	{
 		if (phi_lst->id == phi_lst->philo->philo_num)
 		{
-			if (last_eating(phi_lst))
+			if (last_eating(phi_lst) == FALSE)
 				return (NULL);
 		}
-		if (eating(phi_lst))
+		if (eating(phi_lst) == FALSE)
 			return (NULL);
 		if (phi_lst->philo->times_must_eate > 0
 			&& phi_lst->times_ate >= phi_lst->philo->times_must_eate)
 			break ;
-		if (thinking(phi_lst))
+		if (thinking(phi_lst) == FALSE)
 			return (NULL);
-		if (slepping(phi_lst))
+		if (slepping(phi_lst) == FALSE)
 			return (NULL);
 	}
 	return (NULL);

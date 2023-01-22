@@ -28,8 +28,12 @@ t_bool	eat_counter(t_philo *philo)
 	inx = 1;
 	while (inx != philo->philo_num)
 	{
+		pthread_mutex_lock(&philo->vigi_mutex);
 		if (tmp->times_ate < philo->times_must_eate)
+		{
+			pthread_mutex_unlock(&philo->vigi_mutex);
 			return (TRUE);
+		}
 		inx++;
 		tmp = tmp->next;
 	}
@@ -45,7 +49,7 @@ void	*vigilant(void *node)
 	phi_lst = (t_phi_lst *)node;
 	while (phi_lst->philo->stop_flag)
 	{
-		usleep(50);
+		usleep(10);
 		pthread_mutex_lock(&phi_lst->philo->vigi_mutex);
 		time_eat = current_time() - phi_lst->last_meat;
 		pthread_mutex_unlock(&phi_lst->philo->vigi_mutex);

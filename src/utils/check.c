@@ -71,12 +71,12 @@ void	init_struct(char **args, t_philo *philo)
 	pthread_mutex_init(&philo->check_mutex, NULL);
 }
 
-t_bool	check_variable(t_bool variable, t_philo *philo)
+t_bool	check_death(t_philo *philo)
 {
 	t_bool	tmp;
 
 	pthread_mutex_lock(&philo->check_mutex);
-	tmp = variable;
+	tmp = philo->stop_flag;
 	pthread_mutex_unlock(&philo->check_mutex);
 	return (tmp);
 }

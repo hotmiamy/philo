@@ -83,7 +83,7 @@ int			ft_atoi(const char *numstr);
 int			ft_isdigit(int c);
 long		current_time(void);
 t_bool		print_action(t_phi_lst *phi_lst, char *action);
-t_bool		check_variable(t_bool variable, t_philo *philo);
+t_bool		check_death(t_philo *philo);
 t_bool		last_eating(t_phi_lst *phi_lst);
 t_bool		eating(t_phi_lst *phi_lst);
 t_phi_lst	*phi_lst_new(int id, t_philo *philo);

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_args.c                                       :+:      :+:    :+:   */
+/*   check.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: llopes-n <llopes-n@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: hotmiamy <hotmiamy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/21 16:26:34 by hotmiamy          #+#    #+#             */
-/*   Updated: 2023/01/22 03:18:47 by llopes-n         ###   ########.fr       */
+/*   Updated: 2023/01/22 01:43:08 by hotmiamy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,23 +66,23 @@ void	init_struct(char **args, t_philo *philo)
 	else
 		philo->times_must_eate = -1;
 	philo->stop_flag = TRUE;
-	pthread_mutex_init(&philo->print_mutex, NULL);
-	pthread_mutex_init(&philo->vigi_mutex, NULL);
-	pthread_mutex_init(&philo->check_mutex, NULL);
+	pthread_mutex_init(philo->print_mutex, NULL);
+	pthread_mutex_init(philo->vigi_mutex, NULL);
+	pthread_mutex_init(philo->check_mutex, NULL);
 }
 
 t_bool	check_variable(int variable, t_bool vari_status, t_philo *philo)
 {
 	usleep(15);
-	pthread_mutex_lock(&philo->check_mutex);
+	pthread_mutex_lock(philo->check_mutex);
 	if (variable == (int)vari_status)
 	{
-		pthread_mutex_unlock(&philo->check_mutex);
+		pthread_mutex_unlock(philo->check_mutex);
 		return (vari_status);
 	}
 	else
 	{
-		pthread_mutex_unlock(&philo->check_mutex);
+		pthread_mutex_unlock(philo->check_mutex);
 		return (!vari_status);
 	}
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: llopes-n <llopes-n@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: hotmiamy <hotmiamy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/22 09:32:24 by llopes-n          #+#    #+#             */
-/*   Updated: 2023/01/22 03:52:39 by llopes-n         ###   ########.fr       */
+/*   Updated: 2023/01/22 01:40:02 by hotmiamy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ typedef struct s_phi_lst
 	long				start_time;
 	long				stop_eat;
 	pthread_t			thread;
-	pthread_mutex_t		fork;
+	pthread_mutex_t		*fork;
 	struct s_philo		*philo;
 	struct s_phi_lst	*next;
 }	t_phi_lst;
@@ -59,9 +59,9 @@ typedef struct s_philo
 	int					time_die;
 	int					time_ate;
 	t_bool				stop_flag;
-	pthread_mutex_t		print_mutex;
-	pthread_mutex_t		check_mutex;
-	pthread_mutex_t		vigi_mutex;
+	pthread_mutex_t		*print_mutex;
+	pthread_mutex_t		*check_mutex;
+	pthread_mutex_t		*vigi_mutex;
 	pthread_t			vigi_thread;
 	t_phi_lst			*phi_lst;
 }	t_philo;

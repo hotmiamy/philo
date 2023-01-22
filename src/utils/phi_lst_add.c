@@ -6,7 +6,7 @@
 /*   By: hotmiamy <hotmiamy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/26 15:04:03 by llopes-n          #+#    #+#             */
-/*   Updated: 2023/01/20 22:21:26 by hotmiamy         ###   ########.fr       */
+/*   Updated: 2023/01/22 01:42:37 by hotmiamy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ t_phi_lst	*phi_lst_new(int id, t_philo *philo)
 	new_node = malloc(sizeof(t_phi_lst));
 	new_node->id = id;
 	new_node->times_ate = 0;
-	pthread_mutex_init(&new_node->fork, NULL);
+	pthread_mutex_init(new_node->fork, NULL);
 	new_node->philo = philo;
 	new_node->stop_eat = 0;
 	new_node->next = NULL;

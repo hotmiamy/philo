@@ -6,7 +6,7 @@
 /*   By: hotmiamy <hotmiamy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/27 16:00:45 by llopes-n          #+#    #+#             */
-/*   Updated: 2023/01/22 01:40:36 by hotmiamy         ###   ########.fr       */
+/*   Updated: 2023/01/22 01:58:40 by hotmiamy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	change_last(t_philo *philo)
 {
 	t_phi_lst		*node;
-	pthread_mutex_t	*tmp;
+	pthread_mutex_t	tmp;
 	int				inx;
 
 	inx = 1;

@@ -6,7 +6,7 @@
 /*   By: hotmiamy <hotmiamy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/06 20:56:13 by hotmiamy          #+#    #+#             */
-/*   Updated: 2023/01/22 01:41:35 by hotmiamy         ###   ########.fr       */
+/*   Updated: 2023/01/22 01:58:19 by hotmiamy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,9 @@ t_bool	eat_counter(t_phi_lst *phi_lst)
 
 void	set_stop_flag(t_philo *philo)
 {
-	pthread_mutex_lock(philo->check_mutex);
+	pthread_mutex_lock(&philo->check_mutex);
 	philo->stop_flag = FALSE;
-	pthread_mutex_unlock(philo->check_mutex);
+	pthread_mutex_unlock(&philo->check_mutex);
 }
 
 void	*vigilant(void *node)
@@ -46,9 +46,9 @@ void	*vigilant(void *node)
 	while (philo->philo->stop_flag)
 	{
 		usleep(50);
-		pthread_mutex_lock(philo->philo->vigi_mutex);
+		pthread_mutex_lock(&philo->philo->vigi_mutex);
 		time_eat = current_time() - philo->stop_eat;
-		pthread_mutex_unlock(philo->philo->vigi_mutex);
+		pthread_mutex_unlock(&philo->philo->vigi_mutex);
 		if (time_eat > philo->philo->time_die)
 		{
 			set_stop_flag(philo->philo);

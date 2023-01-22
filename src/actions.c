@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   actions.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: llopes-n <llopes-n@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: hotmiamy <hotmiamy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/21 18:11:10 by hotmiamy          #+#    #+#             */
-/*   Updated: 2023/01/22 03:13:17 by llopes-n         ###   ########.fr       */
+/*   Updated: 2023/01/22 01:31:35 by hotmiamy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,6 @@ int	take_fork_2(t_phi_lst *phi_lst)
 
 t_bool	last_eating(t_phi_lst *phi_lst)
 {
-	pthread_mutex_t tmp;
-
-	tmp = phi_lst->fork;
-	phi_lst->fork = phi_lst->next->fork;
-	phi_lst->next->fork = tmp;
 	take_fork_1(phi_lst);
 	take_fork_2(phi_lst);
 	pthread_mutex_lock(&phi_lst->philo->vigi_mutex);

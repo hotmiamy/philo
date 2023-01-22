@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: llopes-n <llopes-n@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: hotmiamy <hotmiamy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/27 16:00:45 by llopes-n          #+#    #+#             */
-/*   Updated: 2023/01/22 01:50:47 by llopes-n         ###   ########.fr       */
+/*   Updated: 2023/01/22 01:30:55 by hotmiamy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	change_last(t_philo *philo)
 {
 	t_phi_lst		*node;
-	pthread_mutex_t tmp;
+	pthread_mutex_t	tmp;
 	int				inx;
 
 	inx = 1;
@@ -25,7 +25,6 @@ void	change_last(t_philo *philo)
 		node = node->next;
 		inx++;
 	}
-	printf("%i\n", node->id);
 	tmp = node->fork;
 	node->fork = node->next->fork;
 	node->next->fork = tmp;
@@ -85,6 +84,7 @@ void	*init(t_philo *philo, char **args, int argc)
 	check_args(argc, args);
 	init_struct(args, philo);
 	fill_phi_lst(philo);
+	change_last(philo);
 	if (philo->philo_num < 2)
 	{
 		print_action(philo->phi_lst, FORK);

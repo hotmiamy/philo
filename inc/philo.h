@@ -71,21 +71,21 @@ void		fill_phi_lst(t_philo *philo);
 void		*init(t_philo *philo, char **args, int argc);
 void		msleep(int sleep_time);
 void		free_lst(t_phi_lst *phi_lst);
-void		print_action(t_phi_lst *phi_lst, char *action);
 void		*routine(void *node);
 void		*vigilant(void *node);
 void		destroy_mutex(t_philo *philo);
 void		init_struct(char **args, t_philo *philo);
 void		check_args(int argc, char **args);
-void		slepping(t_phi_lst *phi_lst);
-void		thinking(t_phi_lst *phi_lst);
 void		set_stop_flag(t_philo *philo);
+int			print_action(t_phi_lst *phi_lst, char *action);
+int			slepping(t_phi_lst *phi_lst);
+int			thinking(t_phi_lst *phi_lst);
 int			ft_atoi(const char *numstr);
 int			ft_isdigit(int c);
 long		current_time(void);
-t_phi_lst	*phi_lst_new(int id, t_philo *philo);
 t_bool		check_variable(int variable, t_bool vari_status, t_philo *philo);
 t_bool		last_eating(t_phi_lst *phi_lst);
 t_bool		eating(t_phi_lst *phi_lst);
+t_phi_lst	*phi_lst_new(int id, t_philo *philo);
 
 #endif

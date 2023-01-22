@@ -12,7 +12,7 @@
 
 #include "philo.h"
 
-void	print_action(t_phi_lst *phi_lst, char *action)
+int	print_action(t_phi_lst *phi_lst, char *action)
 {
 	long	cur_time;
 
@@ -20,4 +20,5 @@ void	print_action(t_phi_lst *phi_lst, char *action)
 	cur_time = current_time() - phi_lst->start_time;
 	printf("%ld philosofer %i %s\n", cur_time, phi_lst->id, action);
 	pthread_mutex_unlock(&phi_lst->philo->print_mutex);
+	return (0);
 }

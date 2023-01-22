@@ -12,31 +12,38 @@
 
 #include "philo.h"
 
-void	take_fork_1(t_phi_lst *phi_lst)
+int	take_fork_1(t_phi_lst *phi_lst)
 {
 	pthread_mutex_lock(&phi_lst->fork);
 	print_action(phi_lst, FORK);
+	return (0);
 }
 
-void	take_fork_2(t_phi_lst *phi_lst)
+int	take_fork_2(t_phi_lst *phi_lst)
 {
 	pthread_mutex_lock(&phi_lst->next->fork);
 	print_action(phi_lst, FORK);
 	print_action(phi_lst, EAT);
+	return (0);
 }
 
 t_bool	last_eating(t_phi_lst *phi_lst)
 {
-	take_fork_2(phi_lst);
+	pthread_mutex_t tmp;
+
+	tmp = phi_lst->fork;
+	phi_lst->fork = phi_lst->next->fork;
+	phi_lst->next->fork = tmp;
 	take_fork_1(phi_lst);
+	take_fork_2(phi_lst);
 	pthread_mutex_lock(&phi_lst->philo->vigi_mutex);
 	if (phi_lst->philo->times_must_eate > 0)
 		phi_lst->times_ate++;
 	phi_lst->stop_eat = current_time();
 	pthread_mutex_unlock(&phi_lst->philo->vigi_mutex);
 	msleep(phi_lst->philo->time_ate);
-	pthread_mutex_unlock(&phi_lst->next->fork);
 	pthread_mutex_unlock(&phi_lst->fork);
+	pthread_mutex_unlock(&phi_lst->next->fork);
 	return (0);
 }
 
@@ -55,14 +62,16 @@ t_bool	eating(t_phi_lst *phi_lst)
 	return (0);
 }
 
-void	thinking(t_phi_lst *phi_lst)
+int	thinking(t_phi_lst *phi_lst)
 {
 	print_action(phi_lst, THINK);
 	msleep(1);
+	return (0);
 }
 
-void	slepping(t_phi_lst *phi_lst)
+int	slepping(t_phi_lst *phi_lst)
 {
 	print_action(phi_lst, SLEEP);
 	msleep(phi_lst->philo->time_sleep);
+	return (0);
 }

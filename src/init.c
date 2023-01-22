@@ -12,6 +12,25 @@
 
 #include "philo.h"
 
+void	change_last(t_philo *philo)
+{
+	t_phi_lst		*node;
+	pthread_mutex_t tmp;
+	int				inx;
+
+	inx = 1;
+	node = philo->phi_lst;
+	while (inx != philo->philo_num)
+	{
+		node = node->next;
+		inx++;
+	}
+	printf("%i\n", node->id);
+	tmp = node->fork;
+	node->fork = node->next->fork;
+	node->next->fork = tmp;
+}
+
 void	fill_phi_lst(t_philo *philo)
 {
 	t_phi_lst	*node;

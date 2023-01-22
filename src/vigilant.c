@@ -30,22 +30,6 @@ t_bool	eat_counter(t_phi_lst *phi_lst)
 	return (FALSE);
 }
 
-t_bool	check_variable(int variable, t_bool vari_status, t_philo *philo)
-{
-	usleep(50);
-	pthread_mutex_lock(&philo->check_mutex);
-	if (variable == (int)vari_status)
-	{
-		pthread_mutex_unlock(&philo->check_mutex);
-		return (vari_status);
-	}
-	else
-	{
-		pthread_mutex_unlock(&philo->check_mutex);
-		return (!vari_status);
-	}
-}
-
 void	set_stop_flag(t_philo *philo)
 {
 	pthread_mutex_lock(&philo->check_mutex);

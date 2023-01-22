@@ -70,3 +70,19 @@ void	init_struct(char **args, t_philo *philo)
 	pthread_mutex_init(&philo->vigi_mutex, NULL);
 	pthread_mutex_init(&philo->check_mutex, NULL);
 }
+
+t_bool	check_variable(int variable, t_bool vari_status, t_philo *philo)
+{
+	usleep(15);
+	pthread_mutex_lock(&philo->check_mutex);
+	if (variable == (int)vari_status)
+	{
+		pthread_mutex_unlock(&philo->check_mutex);
+		return (vari_status);
+	}
+	else
+	{
+		pthread_mutex_unlock(&philo->check_mutex);
+		return (!vari_status);
+	}
+}

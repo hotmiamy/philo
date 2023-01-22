@@ -6,7 +6,7 @@
 /*   By: hotmiamy <hotmiamy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/06 20:56:13 by hotmiamy          #+#    #+#             */
-/*   Updated: 2023/01/22 14:08:21 by hotmiamy         ###   ########.fr       */
+/*   Updated: 2023/01/22 17:08:05 by hotmiamy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,13 @@ t_bool	eat_counter(t_philo *philo)
 	t_phi_lst	*tmp;
 
 	tmp = philo->phi_lst;
-	inx = 1;
+	inx = 0;
 	while (inx != philo->philo_num)
 	{
+		pthread_mutex_lock(&philo->vigi_mutex);
 		if (tmp->times_ate < philo->times_must_eate)
 		{
+			pthread_mutex_unlock(&philo->vigi_mutex);
 			return (TRUE);
 		}
 		inx++;
@@ -47,7 +49,7 @@ void	*vigilant(void *node)
 	phi_lst = (t_phi_lst *)node;
 	while (phi_lst->philo->stop_flag)
 	{
-		usleep(10);
+		usleep(100);
 		pthread_mutex_lock(&phi_lst->philo->vigi_mutex);
 		time_eat = current_time() - phi_lst->last_meat;
 		pthread_mutex_unlock(&phi_lst->philo->vigi_mutex);
@@ -59,7 +61,6 @@ void	*vigilant(void *node)
 		if (phi_lst->philo->times_must_eate > 0 && !eat_counter(phi_lst->philo))
 			return (NULL);
 		phi_lst = phi_lst->next;
-		usleep(50);
 	}
 	print_action(phi_lst, DEAD);
 	return (NULL);
